@@ -12,9 +12,14 @@ The simplest library for loading indicator @decorator in Angular 2/4.
 
 ## 2. Using
 
-We have 2 ways to use this decorator in our code:
+### Add into `.component`
+```js
+import { LoadingIndicator } from 'ng2-loading-indicator';
+```
 
-- When return a `Subscription` after call `.subscribe`
+### We have 2 ways to use this decorator in our code:
+
+#### 1. When return a `Subscription` after call `.subscribe`
 ``` js
   @LoadingIndicator()
   tryLoadingIndicator() {
@@ -23,8 +28,18 @@ We have 2 ways to use this decorator in our code:
     });
   }
 ```
+- Other cases in `http`,`forms`,... anything in Angular are using `rxjs`
 
-- When return a `Observable<T>` after call from operators `do`, `map`,...
+```js
+  @LoadingIndicator()
+  getDataFromApi() {
+    this.http.get('your-api.com')
+    .map(res => res.json())
+    .subscribe(res => {});
+  }
+```
+
+#### 2. When return a `Observable<T>` after call from operators `do`, `map`,...
 ``` js
   @LoadingIndicator()
   tryLoadingIndicator() {
