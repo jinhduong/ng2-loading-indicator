@@ -20,6 +20,7 @@ import { LoadingIndicator } from 'ng2-loading-indicator';
 ### We have 2 ways to use this decorator in our code:
 
 #### 1. When return a `Subscription` after call `.subscribe`
+
 ``` js
   @LoadingIndicator()
   tryLoadingIndicator() {
@@ -40,6 +41,7 @@ import { LoadingIndicator } from 'ng2-loading-indicator';
 ```
 
 #### 2. When return a `Observable<T>` after call from operators `do`, `map`,...
+
 ``` js
   @LoadingIndicator()
   tryLoadingIndicator() {
