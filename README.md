@@ -1,67 +1,38 @@
-# ng2-choices
+# ng2-loading-indicator @decorator
 
-The simplest library for multiple choices in Angular.
+The simplest library for loading indicator @decorator in Angular 2/4.
 
 - No dependencies
 - Simplest
 
-![http://i.imgur.com/AerIXxA.png](http://i.imgur.com/AerIXxA.png)
+![https://media.giphy.com/media/3ohrycvBeKeTToSjcs/giphy.gif](https://media.giphy.com/media/3ohrycvBeKeTToSjcs/giphy.gif)
 
 ## 1. Install
-`npm install ng2-choices --save`
+`npm install ng2-loading-indicator --save`
 
 ## 2. Using
 
-### **2.1 .html**
-``` html
-<ng2-choices [options]="options" (change)="change($event)" [choices]="choices"></ng2-choices>
-```
+We have 2 ways to use this decorator in our code:
 
-
-### **2.2 .component**
-
+- When return a `Subscription` after call `.subscribe`
 ``` js
-choices: ChoiceModel[] = [
-    { title: 'Angular', checked: false },
-    { title: 'React', checked: false },
-    { title: 'Vue', checked: false },
-    { title: 'Ember', checked: false },
-    { title: 'Preact', checked: false },
-    { title: 'Aurelia', checked: false }
-  ];
+  @LoadingIndicator()
+  tryLoadingIndicator() {
+    return Observable.timer(3000).subscribe(x => {
+      console.log('finished 3s');
+    });
+  }
 ```
 
-### **2.3 .app.module**
-
+- When return a `Observable<T>` after call from operators `do`, `map`,...
 ``` js
-import { Ng2ChoicesComponent } from './ng2-choices/build';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    Ng2ChoicesComponent
-  ],
-  imports: [
-    ...
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+  @LoadingIndicator()
+  tryLoadingIndicator() {
+    return Observable.timer(3000).do(x => {
+      console.log('finished 3s');
+    });
+  }
 ```
-
-### **options**
-Default options
-``` js
-options = <ChoiceOptions>{
-    multiple: true
-};
-```
-
-### **events/ functions**
-
-`change(item)`: Will fire whenever you checked/unchecked any items.
-  - *item*: item which is checking/ un-checking.
 
 
 
