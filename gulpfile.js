@@ -3,6 +3,7 @@ const shell = require('gulp-shell');
 const gulpSequence = require('gulp-sequence');
 const del = require('del');
 const bump = require('gulp-bump');
+const mocha = require('gulp-mocha');
 
 gulp.task('tsc', shell.task(['tsc']));
 
@@ -22,3 +23,8 @@ gulp.task('bump', function() {
 });
 
 gulp.task('default', gulpSequence('clear', 'tsc', 'package'));
+
+gulp.task("test", function() {
+  gulp.src('./test/**/*.js')
+  		.pipe(mocha({reporter: 'spec'}))
+});
