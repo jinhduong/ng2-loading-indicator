@@ -4,20 +4,19 @@ jobs:
     working_directory: ~/ng2-simple-loading
     docker:
       - image: circleci/node:6-browsers
-    dependencies:
-        pre:
-            - npm install -g gulp
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
+          key: dependency-cache-{{ checksum "package.lock" }}
+      - run:
+          name: install gulp
+          command: npm install gulp -g
       - run:
           name: install-dependencies
-          command: yarn install
+          command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
+          key: dependency-cache-{{ checksum "package.lock" }}
           paths:
-            - ~/.cache/yarn
             - ./node_modules
       - run:
           name: angular-build
