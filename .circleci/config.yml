@@ -4,6 +4,9 @@ jobs:
     working_directory: ~/ng2-simple-loading
     docker:
       - image: circleci/node:6-browsers
+    dependencies:
+        pre:
+            - npm install -g gulp
     steps:
       - checkout
       - restore_cache:
