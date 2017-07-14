@@ -13,6 +13,7 @@
   },
   "exclude": [
     "test",
-    "build"
+    "build",
+    "node_modules"
   ]
 }
