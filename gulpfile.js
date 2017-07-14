@@ -5,7 +5,7 @@ const del = require('del');
 const bump = require('gulp-bump');
 const mocha = require('gulp-mocha');
 
-gulp.task('tsc', shell.task(['tsc']));
+gulp.task('tsc', shell.task(['npm run tsc']));
 
 gulp.task('package', [], () => {
   gulp.src(['./package.json']).pipe(gulp.dest('./build'));
