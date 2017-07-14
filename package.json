@@ -4,7 +4,8 @@
   "description": "Angular 2 loading indicator decorator",
   "main": "index.js",
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "test": "gulp test"
   },
   "keywords": [
     "ng2-loading-indicator",

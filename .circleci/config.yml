@@ -6,11 +6,6 @@ jobs:
       - image: circleci/node:6-browsers
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.lock" }}
-      - run:
-          name: install gulp
-          command: npm install gulp -g
       - run:
           name: install-dependencies
           command: npm install
@@ -19,11 +14,11 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: angular-build
-          command: gulp
+          name: build
+          command: npm run build
       - run:
-          name: angular-test
-          command: gulp test
+          name: build
+          command: npm run test
       - store_artifacts:
           path: test-results.xml
           prefix: tests
