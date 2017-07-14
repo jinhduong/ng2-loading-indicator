@@ -21,7 +21,7 @@ import { LoadingIndicator } from 'ng2-loading-indicator';
 
 #### 1. When return a `Subscription` after call `.subscribe`
 
-``` js
+```js
   @LoadingIndicator()
   tryLoadingIndicator() {
     return Observable.timer(3000).subscribe(x => {
@@ -29,12 +29,13 @@ import { LoadingIndicator } from 'ng2-loading-indicator';
     });
   }
 ```
+
 - Other cases in `http`,`forms`,... anything in Angular are using `rxjs`
 
 ```js
   @LoadingIndicator()
   getDataFromApi() {
-    this.http.get('your-api.com')
+    return this.http.get('your-api.com')
     .map(res => res.json())
     .subscribe(res => {});
   }
@@ -42,7 +43,7 @@ import { LoadingIndicator } from 'ng2-loading-indicator';
 
 #### 2. When return a `Observable<T>` after call from operators `do`, `map`,...
 
-``` js
+```js
   @LoadingIndicator()
   tryLoadingIndicator() {
     return Observable.timer(3000).do(x => {
@@ -50,6 +51,8 @@ import { LoadingIndicator } from 'ng2-loading-indicator';
     });
   }
 ```
+
+
 
 
 

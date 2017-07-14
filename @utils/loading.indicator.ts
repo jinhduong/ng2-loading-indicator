@@ -36,87 +36,36 @@ export class LoadingIndicatorUtils {
     }
 
     .loading:not(:required):after {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: transparent;
       content: '';
       display: block;
-      font-size: 10px;
-      width: 1em;
-      height: 1em;
-      margin-top: -0.5em;
-      -webkit-animation: spinner 1500ms infinite linear;
-      -moz-animation: spinner 1500ms infinite linear;
-      -ms-animation: spinner 1500ms infinite linear;
-      -o-animation: spinner 1500ms infinite linear;
-      animation: spinner 1500ms infinite linear;
-      border-radius: 0.5em;
-      -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
-      box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+      
+      border-top: 4px solid #fff;
+      border-right: 4px solid #fff;
+      border-bottom: 4px solid #777;
+      border-left: 4px solid #777;
+      
+      -webkit-animation: loading 1.2s infinite linear;
+      -moz-animation: loading 1.2s infinite linear;
+      -ms-animation: loading 1.2s infinite linear;
+      animation: loading 1.2s infinite linear;
     }
 
     /* Animation */
-
-    @-webkit-keyframes spinner {
-      0% {
-        -webkit-transform: rotate(0deg);
-        -moz-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
-        transform: rotate(0deg);
-      }
-      100% {
-        -webkit-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-        transform: rotate(360deg);
-      }
+    @-webkit-keyframes loading {
+      to { -webkit-transform: rotate(360deg); }
     }
-    @-moz-keyframes spinner {
-      0% {
-        -webkit-transform: rotate(0deg);
-        -moz-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
-        transform: rotate(0deg);
-      }
-      100% {
-        -webkit-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-        transform: rotate(360deg);
-      }
+    @-moz-keyframes loading {
+      to { -moz-transform: rotate(360deg); }
     }
-    @-o-keyframes spinner {
-      0% {
-        -webkit-transform: rotate(0deg);
-        -moz-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
-        transform: rotate(0deg);
-      }
-      100% {
-        -webkit-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-        transform: rotate(360deg);
-      }
+    @-ms-keyframes loading {
+      to { -ms-transform: rotate(360deg); }
     }
-    @keyframes spinner {
-      0% {
-        -webkit-transform: rotate(0deg);
-        -moz-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
-        transform: rotate(0deg);
-      }
-      100% {
-        -webkit-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-        transform: rotate(360deg);
-      }
+    @keyframes loading {
+      to { transform: rotate(360deg); }
     }
     .loading.hide{
       display: none;
