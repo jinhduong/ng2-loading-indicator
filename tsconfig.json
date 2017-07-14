@@ -10,5 +10,8 @@
     "outDir": "./build",
     "declaration": true,
     "lib": ["es2016", "dom"]
-  }
+  },
+  "exclude": [
+    "test"
+  ]
 }
