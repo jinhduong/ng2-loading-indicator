@@ -102,13 +102,15 @@ export class LoadingIndicatorUtils {
   public static showLoading() {
     if (!this.$element) {
       this.init();
-    };
+    }
     this.$element.className = 'loading show';
+    return true;
   }
 
   public static hideLoading() {
     if (this.$element) {
       this.$element.className = 'loading hide';
     }
+    return false;
   }
 }

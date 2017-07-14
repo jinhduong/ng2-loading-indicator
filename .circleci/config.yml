@@ -13,7 +13,7 @@ jobs:
           name: build
           command: npm run build
       - run:
-          name: build
+          name: test
           command: npm run test
       - store_artifacts:
           path: test-results.xml
