@@ -18,6 +18,13 @@ export function LoadingIndicator(elemRef?: ElementRef): MethodDecorator {
         subs.subscribe(() => {
           LoadingIndicatorUtils.hideLoading();
         });
+      } else if (subs.__zone_symbol__state === null) {
+        const _interval = setInterval(() => {
+          if (subs.__zone_symbol__state === true) {
+            LoadingIndicatorUtils.hideLoading();
+            clearInterval(_interval);
+          }
+        }, 50);
       } else {
         // If it's using subscribe
         const _interval = setInterval(() => {

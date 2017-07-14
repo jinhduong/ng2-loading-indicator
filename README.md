@@ -41,7 +41,16 @@ import { LoadingIndicator } from 'ng2-loading-indicator';
   }
 ```
 
-#### 2. When return a `Observable<T>` after call from operators `do`, `map`,...
+#### 2. In async/await function
+
+```js
+@LoadingIndicator()
+async tryLoadingIndicator() {
+  await Observable.timer(3000).toPromise();
+}
+```
+
+#### 3. When return a `Observable<T>` after call from operators `do`, `map`,...
 
 ```js
   @LoadingIndicator()
