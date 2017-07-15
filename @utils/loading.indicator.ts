@@ -35,7 +35,8 @@ export class LoadingIndicatorUtils {
       border: 0;
     }
 
-    .loading:not(:required):after {
+    .loading:not(:required):after
+    {
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -52,6 +53,28 @@ export class LoadingIndicatorUtils {
       -moz-animation: loading 1.2s infinite linear;
       -ms-animation: loading 1.2s infinite linear;
       animation: loading 1.2s infinite linear;
+    }
+
+    .section-loading:not(:required):after {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: transparent;
+      content: '';
+      display: block;
+      
+      border-top: 4px solid #fff;
+      border-right: 4px solid #fff;
+      border-bottom: 4px solid #777;
+      border-left: 4px solid #777;
+      
+      -webkit-animation: loading 1.2s infinite linear;
+      -moz-animation: loading 1.2s infinite linear;
+      -ms-animation: loading 1.2s infinite linear;
+      animation: loading 1.2s infinite linear;
+      position: absolute;
+      top: 50%;
+      left: 45%;  
     }
 
     /* Animation */
@@ -72,6 +95,17 @@ export class LoadingIndicatorUtils {
     }
     .loading.show{
       display: inherit;
+    }
+    .section-loading{
+      position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.3);
+    }
+    .parent-section-loading {
+      position: relative;
     }
 `;
   private static $element: Element;
@@ -112,5 +146,24 @@ export class LoadingIndicatorUtils {
       this.$element.className = 'loading hide';
     }
     return false;
+  }
+
+  public static sectionShowLoading(rootElem: Element) {
+    if (!this.$element) {
+      this.init();
+    }
+    const virtualChildElem = document.createElement('div');
+    const _oldStyles = rootElem.getAttribute('style');
+
+    rootElem.className = `${rootElem.className} parent-section-loading`;
+
+    virtualChildElem.className = 'section-loading show';
+    rootElem.appendChild(virtualChildElem);
+  }
+
+  public static sectionHideLoading(rootElem: Element) {
+    const sectionLoadingElem = rootElem.querySelectorAll('.section-loading')[0];
+    rootElem.classList.remove('section-loading');
+    sectionLoadingElem.remove();
   }
 }
