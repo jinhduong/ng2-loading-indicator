@@ -1,4 +1,8 @@
 # ng2-loading-indicator @decorator
+[npm-url]: https://npmjs.org/package/ng2-loading-indicator
+[npm-image]: https://img.shields.io/npm/v/ng2-loading-indicator.svg
+[downloads-image]: https://img.shields.io/npm/dm/ng2-loading-indicator.svg
+[total-downloads-image]: https://img.shields.io/npm/dt/ng2-loading-indicator.svg
 
 The simplest library for loading indicator @decorator in Angular 2/4.
 
