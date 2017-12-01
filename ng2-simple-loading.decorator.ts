@@ -33,7 +33,7 @@ export function LoadingIndicator(props?: string[]): MethodDecorator {
         });
       } else if (subs.__zone_symbol__state === null) {
         const _interval = setInterval(() => {
-          if (subs.__zone_symbol__state === true) {
+          if (subs.__zone_symbol__state !== null) {
             hideLoading(_sectionElem);
             clearInterval(_interval);
           }
