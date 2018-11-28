@@ -1,18 +1,21 @@
 import { LoadingIndicatorUtils } from './@utils/loading.indicator';
 
 export function LoadingIndicator(props?: string[]): MethodDecorator {
-  return function(
+  return function (
     target: Object,
     propertyKey: string | symbol,
     descriptor: any
   ) {
     let _sectionElem;
+    let _virtualInterval;
+    let _counter = 0;
+    const timeout = 10000; //10s
     const originalMethod = descriptor.value;
     const afterViewInitOriginalMethod =
-      target.constructor.prototype.ngAfterViewInit || (() => {});
+      target.constructor.prototype.ngAfterViewInit || (() => { });
 
     if (props) {
-      target.constructor.prototype.ngAfterViewInit = function(...args) {
+      target.constructor.prototype.ngAfterViewInit = function (...args) {
         afterViewInitOriginalMethod.apply(this, args);
         Object.keys(this).forEach(prop => {
           const property = this[prop];
@@ -23,28 +26,38 @@ export function LoadingIndicator(props?: string[]): MethodDecorator {
       };
     }
 
-    descriptor.value = function(...args) {
+    descriptor.value = function (...args) {
       const subs = originalMethod.apply(this, args);
       showLoading(_sectionElem);
       // If it's using do operator
-      if (subs.subscribe) {
-        subs.subscribe(() => {
-          hideLoading(_sectionElem);
-        });
-      } else if (subs.__zone_symbol__state === null) {
-        const _interval = setInterval(() => {
-          if (subs.__zone_symbol__state !== null) {
+      try {
+        if (subs.subscribe) {
+          subs.subscribe(() => {
             hideLoading(_sectionElem);
-            clearInterval(_interval);
-          }
-        }, 50);
-      } else {
-        // If it's using subscribe
-        const _interval = setInterval(() => {
-          if (subs.isStopped) {
-            hideLoading(_sectionElem);
-          }
-        }, 50);
+          });
+        } else if (subs.__zone_symbol__state === null) {
+          const _interval = setInterval(() => {
+            _counter += 50;
+            if (subs.__zone_symbol__state !== null || _counter > timeout) {
+              hideLoading(_sectionElem);
+              clearInterval(_interval);
+            }
+          }, 50);
+          this._virtualInterval = _interval;
+        } else {
+          // If it's using subscribe
+          const _interval = setInterval(() => {
+            _counter += 50;
+            if (subs.isStopped || _counter > timeout) {
+              hideLoading(_sectionElem);
+              clearInterval(_interval);
+            }
+          }, 50);
+          this._virtualInterval = _interval;
+        }
+      } catch (err) {
+        hideLoading(_sectionElem);
+        clearInterval(_virtualInterval);
       }
     };
   };

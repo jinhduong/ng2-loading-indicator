@@ -1,6 +1,6 @@
 {
   "name": "ng2-loading-indicator",
-  "version": "0.0.8",
+  "version": "0.0.11",
   "description": "Angular 2 loading indicator decorator",
   "main": "index.js",
   "scripts": {
@@ -35,7 +35,5 @@
     "gulp-shell": "^0.6.3",
     "@angular/core": "^4.0.2"
   },
-  "dependencies": {
-    
-  }
+  "dependencies": {}
 }
