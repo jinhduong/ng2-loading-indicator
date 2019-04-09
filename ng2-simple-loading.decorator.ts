@@ -8,7 +8,6 @@ export function LoadingIndicator(props?: string[]): MethodDecorator {
   ) {
     let _sectionElem;
     let _virtualInterval;
-    let _counter = 0;
     const timeout = 10000; //10s
     const originalMethod = descriptor.value;
     const afterViewInitOriginalMethod =
@@ -26,10 +25,11 @@ export function LoadingIndicator(props?: string[]): MethodDecorator {
       };
     }
 
-    descriptor.value = function (...args) {
+    descriptor.value = function (...args) { 
       const subs = originalMethod.apply(this, args);
       showLoading(_sectionElem);
       // If it's using do operator
+      let _counter = 0;
       try {
         if (subs.subscribe) {
           subs.subscribe(() => {
